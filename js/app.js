@@ -71,11 +71,20 @@ textToDetectInput.addEventListener('input', () => {
 
 // listen to the click on button
 
+loadCircle = () => {
+  resultsOutput.innerHTML = '';
+  html = `
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  `;
+  resultsOutput.innerHTML = html;
+}
+
 detectBtn.addEventListener('click', e => {
   e.preventDefault();
 
   getResponse(textToDetectInput.value.trim())
     .then(data => showResults(data))
+    .then(loadCircle())
     .then(err => console.log(err));
 
   form.reset();
