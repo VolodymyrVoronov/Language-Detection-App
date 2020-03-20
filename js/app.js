@@ -71,7 +71,7 @@ textToDetectInput.addEventListener('input', () => {
 
 // listen to the click on button
 
-loadCircle = () => {
+showProgressBar = () => {
   resultsOutput.innerHTML = '';
   html = `
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -84,7 +84,7 @@ detectBtn.addEventListener('click', e => {
 
   getResponse(textToDetectInput.value.trim())
     .then(data => showResults(data))
-    .then(loadCircle())
+    .then(showProgressBar())
     .then(err => console.log(err));
 
   form.reset();
@@ -99,7 +99,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     getResponse(textToDetectInput.value.trim())
       .then(data => showResults(data))
-      .then(loadCircle())
+      .then(showProgressBar())
       .then(err => console.log(err));
 
     form.reset();
