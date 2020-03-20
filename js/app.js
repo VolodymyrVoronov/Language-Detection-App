@@ -98,7 +98,7 @@ document.addEventListener('keydown', e => {
   if (e.keyCode === KEY_ENTER) {
     e.preventDefault();
     getResponse(textToDetectInput.value.trim())
-    .then(data => showResults(data))
+    .then(loadCircle())
     .then(err => console.log(err));
 
     form.reset();
