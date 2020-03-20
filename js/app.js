@@ -8,11 +8,12 @@ const resultsOutput = document.querySelector('.app__results');
 // get data from server
 
 getResponse = async text => {
+  const proxy = 'https://cors-anywhere.herokuapp.com/';
   const endpoint = 'http://api.languagelayer.com/detect?access_key=';
   const apiKey = '050e75323122ab7c32092011df465e4c';
   const query = `&query=${text}`;
   
-  const response = await fetch(endpoint + apiKey + query);
+  const response = await fetch(proxy + endpoint + apiKey + query);
   const data = await response.json();
 
   return data;
