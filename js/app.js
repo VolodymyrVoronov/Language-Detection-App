@@ -35,6 +35,7 @@ checkAnyTextInTextarea = () => {
 // show results
 
 showResults = data => {
+  textToDetectInput.focus();
   resultsOutput.innerHTML = '';
 
   data.results.forEach(element => {
@@ -59,17 +60,7 @@ showResults = data => {
   });
 }
 
-// disable btn
-
-detectBtn.setAttribute('disabled', 'disabled');
-detectBtn.classList.add('main-form__btn--disabled');
-
-textToDetectInput.addEventListener('input', () => {
-  checkAnyTextInTextarea();
-  textToDetectInput.placeholder = textToDetectInput.value;
-});
-
-// listen to the click on button
+// show progress bar
 
 showProgressBar = () => {
   resultsOutput.innerHTML = '';
@@ -79,13 +70,27 @@ showProgressBar = () => {
   resultsOutput.innerHTML = html;
 }
 
+// disable check button
+
+detectBtn.setAttribute('disabled', 'disabled');
+detectBtn.classList.add('main-form__btn--disabled');
+textToDetectInput.focus();
+
+// listen to the input field
+
+textToDetectInput.addEventListener('input', () => {
+  checkAnyTextInTextarea();
+  textToDetectInput.placeholder = textToDetectInput.value;
+});
+
+// listen to the click on button
+
 detectBtn.addEventListener('click', e => {
   e.preventDefault();
 
   getResponse(textToDetectInput.value.trim())
     .then(data => showResults(data))
-    .then(showProgressBar())
-    .then(err => console.log(err));
+    .then(showProgressBar());
 
   form.reset();
   detectBtn.setAttribute('disabled', 'disabled');
@@ -99,8 +104,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     getResponse(textToDetectInput.value.trim())
       .then(data => showResults(data))
-      .then(showProgressBar())
-      .then(err => console.log(err));
+      .then(showProgressBar());
 
     form.reset();
     detectBtn.setAttribute('disabled', 'disabled');
