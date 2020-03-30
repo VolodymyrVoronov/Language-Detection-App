@@ -1,4 +1,4 @@
-## Language Detection App
+# Language Detection App
 
 The project online [here](https://volodymyrvoronov.github.io/Language-Detection-App.io/).
 
